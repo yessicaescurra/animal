@@ -1,0 +1,72 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button default-href="/animal-list"></ion-back-button>
+    </ion-buttons>
+
+    <ion-title>{{isNew ? 'Nuevo' : 'Editar'}} Animal</ion-title>
+
+    <ion-buttons slot="primary">
+      <ion-button fill="solid" (click)="guardarAnimal()" color="primary">
+        Guardar
+      </ion-button>
+      <ion-button *ngIf="!isNew" fill="solid" (click)="eliminarAnimal()" color="danger">
+        <ion-icon slot="end" name="trash"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <ion-list>
+    <ion-item style="display: none;">
+      <ion-label>ID#</ion-label>
+      <ion-input [(ngModel)]="id" readonly="true" disabled="true"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Nombre:</ion-label>
+      <ion-input [(ngModel)]="animal.nombre" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Especie:</ion-label>
+      <ion-input [(ngModel)]="animal.especie" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Edad:</ion-label>
+      <ion-input [(ngModel)]="animal.edad" type="number" required></ion-input>
+    </ion-item>
+
+    <ion-list>
+      <ion-item>
+        <ion-label>Género</ion-label>
+        <ion-select [(ngModel)]="animal.genero">
+          <ion-select-option value="true">Macho</ion-select-option>
+          <ion-select-option value="false">Hembra</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-list>
+    <ion-item>
+      <ion-label>Fecha de Llegada:</ion-label>
+      <ion-input type="date"
+        [(ngModel)]="animal.fecha">
+      </ion-input>
+    </ion-item>
+    
+    <!--<ion-item>
+      <ion-label>Estado:</ion-label>
+      <ion-input [(ngModel)]="animal.estado" type="number" required></ion-input>
+    </ion-item>-->
+
+    <ion-item>
+      <ion-label>Estado:</ion-label>
+      <ion-select [(ngModel)]="animal.estado">
+        <ion-select-option *ngFor="let num of [1, 2, 3, 4, 5]" [value]="num">{{ num }}</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+  </ion-list>
+</ion-content>
